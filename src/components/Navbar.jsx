@@ -16,12 +16,6 @@ const Navbar = () => {
         <Link to="/login" className={isActive("/login")}>
           Login
         </Link>
-        <Link to="/register/college" className={isActive("/register/college")}>
-          College Register
-        </Link>
-        <Link to="/register/company" className={isActive("/register/company")}>
-          Company Register
-        </Link>
       </div>
     </nav>
   );
