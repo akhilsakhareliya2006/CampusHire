@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import TextInput from "../components/TextInput.jsx";
+import { useNavigate } from "react-router-dom";
+
 
 const CollegeRegister = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
     address: "",
@@ -74,6 +77,18 @@ const CollegeRegister = () => {
 
       console.log("College Registration Success:", data);
       alert("College registered successfully!");
+
+      setForm({
+        name: "",
+        address: "",
+        email: "",
+        phone: "",
+        password: "",
+        confirmPassword: "",
+      });
+
+    // 2️⃣ Redirect to login page
+      navigate("/login", { replace: true });
 
     } catch (error) {
       console.error("Network error:", error);
