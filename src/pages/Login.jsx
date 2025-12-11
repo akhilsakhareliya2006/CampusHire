@@ -43,6 +43,7 @@ const handleSubmit = async (e) => {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify(form)
       });
 
@@ -81,7 +82,7 @@ const handleSubmit = async (e) => {
       <div className="card">
         <h2>Login</h2>
         <p className="card-subtitle">
-          Login as company / college / student (later we can separate).
+          Login as company / college / student / mentor / employee.
         </p>
 
         <form onSubmit={handleSubmit} noValidate>
