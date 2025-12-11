@@ -49,13 +49,36 @@ const CollegeRegister = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
-    // TODO: API call later: POST /api/college/register
-    console.log("College Registration:", form);
-    alert("College registration form submitted (frontend only now)");
+    try {
+      console.log(CollegeRegister);
+      
+      const res = await fetch("http://localhost:5000/api/auth/register/college", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form)
+      });
+
+      const data = await res.json();  // <-- IMPORTANT
+
+      if (!res.ok) {
+        console.error("Error:", data);
+        alert(data.message || "Registration failed");
+        return;
+      }
+
+      console.log("College Registration Success:", data);
+      alert("College registered successfully!");
+
+    } catch (error) {
+      console.error("Network error:", error);
+      alert("Something went wrong!");
+    }
   };
 
   return (
